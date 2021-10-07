@@ -26,21 +26,25 @@ alert(results);
 
 let isUserFinished = false; 
 
-while(isUserFinished === false){
-    let userInput = prompt("Is this okay for your trip?");
-    if (userInput === "yes"){
-        isUserFinished = true;
-    }else if (userInput === "no"){
-         randomDest = destinations[Math.floor(Math.random() * destinations.length)];
-         randomFood = restaurant[Math.floor(Math.random() * restaurant.length)];
-         randomTravel = travelMode[Math.floor(Math.random() * travelMode.length)];
-         randomActivity = extraActivity[Math.floor(Math.random() * extraActivity.length)];
-         let newResults = (`${randomDest} is your destination. You will be eating at a ${randomFood} restaurant. You will be traveling via a ${randomTravel}. After your dinner you can enjoy ${randomActivity}`);
-         alert(newResults);
-         console.log(newResults);
-    } 
-} 
-// i added a new line for "newResults" as i was having an issue with the information not updating correctly when a user selects "no". Now the program works as intended and you can switch your day trip is wanted by the user.
+getResults();
+        
+function getResults() {
+    while (isUserFinished === false) {
+        let userInput = prompt("Is this okay for your trip?");
+        if (userInput === "yes") {
+            isUserFinished = true;
+            console.log(`Complete!     ${randomDest} is your destination. You will be eating at a ${randomFood} restaurant. You will be traveling via a ${randomTravel}. After your dinner you can enjoy ${randomActivity}.`);
+        } else if (userInput === "no") {
+            randomDest = destinations[Math.floor(Math.random() * destinations.length)];
+            randomFood = restaurant[Math.floor(Math.random() * restaurant.length)];
+            randomTravel = travelMode[Math.floor(Math.random() * travelMode.length)];
+            randomActivity = extraActivity[Math.floor(Math.random() * extraActivity.length)];
+        }
+        let newResults = (`${randomDest} is your destination. You will be eating at a ${randomFood} restaurant. You will be traveling via a ${randomTravel}. After your dinner you can enjoy ${randomActivity}.`);
+        alert(newResults);
+    }
+}
+ // i added a new line for "newResults" as i was having an issue with the information not updating correctly when a user selects "no". Now the program works as intended and you can switch your day trip is wanted by the user.
 // the above is a while loop. this is where the user is prompted and asked if they like the options that were randomly selected for them
 // after the initial selection, if the user selects "no" then that will prompt the program to get a new selection of random options. These will be displayed before asking the user again if it is okay
 // if the user does select yes, it will then alert the trip they are having and will also then console log the results
